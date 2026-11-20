@@ -1,12 +1,12 @@
-# DocHelper 文档审阅
+# DocReviewHelper 文档审阅
 
 > 把 AI 生成的 Markdown 文档变成**可逐块批注、支持多版本回溯**的本机 HTML 审阅页。
 
 在与 AI Agent 协作撰写技术方案、架构设计或复盘报告时，直接在聊天框里口头描述“第三段第二句改一下”“代码块里补充空值处理”往往效率很低，且多轮修改后很难回溯上下文。
 
-**DocHelper** 为项目工作目录提供一套轻量、完全离线的文档审阅工作流：你可以在网页中像评审稿件一样，在任意段落、图表、表格或代码块旁写下批注；再让 Agent 按批注逐条修订并发布新版本，整个迭代过程清晰留痕。
+**DocReviewHelper** 为项目工作目录提供一套轻量、完全离线的文档审阅工作流：你可以在网页中像评审稿件一样，在任意段落、图表、表格或代码块旁写下批注；再让 Agent 按批注逐条修订并发布新版本，整个迭代过程清晰留痕。
 
-![DocHelper 纸本主题审阅界面全景](docs/images/review-folio.png)
+![DocReviewHelper 纸本主题审阅界面全景](docs/images/review-folio.png)
 
 ---
 
@@ -41,22 +41,22 @@
 
 ## 安装配置（交给 Agent 一键完成）
 
-DocHelper 以 Agent Skill 形式分发，安装与运行只需 **Python 3.9+**（含标准库 `sqlite3`）和现代浏览器，全程可离线完成。
+DocReviewHelper 以 Agent Skill 形式分发，安装与运行只需 **Python 3.9+**（含标准库 `sqlite3`）和现代浏览器，全程可离线完成。
 
-将安装包 [dist/doc-helper.zip](dist/doc-helper.zip) 作为附件发给目标 Agent，并发送下面这段提示（如果目标 Agent 可以直接访问本地源码，也可以直接附上 `Skill-DocHelper` 目录路径）：
+将安装包 [dist/doc-review-helper.zip](dist/doc-review-helper.zip) 作为附件发给目标 Agent，并发送下面这段提示（如果目标 Agent 可以直接访问本地源码，也可以直接附上 `Skill-DocReviewHelper` 目录路径）：
 
-> 请读取我提供的 DocHelper 压缩包或源码目录中的 INSTALL.md，在你当前运行的 agent 环境里为当前用户安装配置 DocHelper，验证它可以调用，并告诉我在这个环境中该怎样发起第一次文档审阅。
+> 请读取我提供的 DocReviewHelper 压缩包或源码目录中的 INSTALL.md，在你当前运行的 agent 环境里为当前用户安装配置 DocReviewHelper，验证它可以调用，并告诉我在这个环境中该怎样发起第一次文档审阅。
 
-> **提示**：若只想为单个项目启用 DocHelper，可在上述消息中额外说明项目路径与“仅安装到该项目”。
+> **提示**：若只想为单个项目启用 DocReviewHelper，可在上述消息中额外说明项目路径与“仅安装到该项目”。
 
 ### 主流宿主安装位置参考
 
 | Agent 宿主 | 用户级技能目录 | 项目级技能目录 | 显式调用方式 |
 | :--- | :--- | :--- | :--- |
-| **Codex** | `~/.agents/skills/` | `<项目>/.agents/skills/` | `$doc-helper` |
-| **Claude Code** | `~/.claude/skills/` | `<项目>/.claude/skills/` | `/doc-helper` |
+| **Codex** | `~/.agents/skills/` | `<项目>/.agents/skills/` | `$doc-review-helper` |
+| **Claude Code** | `~/.claude/skills/` | `<项目>/.claude/skills/` | `/doc-review-helper` |
 
-压缩包顶层包含 `INSTALL.md` 与完整的 `doc-helper/` 技能目录。其他兼容 Agent Skills 的宿主及详细验收步骤，请参阅 [安装与验证说明](INSTALL.md)。
+压缩包顶层包含 `INSTALL.md` 与完整的 `doc-review-helper/` 技能目录。其他兼容 Agent Skills 的宿主及详细验收步骤，请参阅 [安装与验证说明](INSTALL.md)。
 
 ---
 
@@ -71,11 +71,11 @@ flowchart LR
     E -. 继续迭代 / 返查 / 恢复 .-> C
 ```
 
-以 **Codex** 为例（在 Claude Code 中将 `$doc-helper` 替换为 `/doc-helper`），在待审文档所属项目的对话中完成一轮审阅只需三步：
+以 **Codex** 为例（在 Claude Code 中将 `$doc-review-helper` 替换为 `/doc-review-helper`），在待审文档所属项目的对话中完成一轮审阅只需三步：
 
 ### 1. 发布文档并获取审阅链接
 
-> `$doc-helper` 请把 `docs/design.md` 发布成审阅页，文档 ID 用 `design`，给我本机阅读链接。
+> `$doc-review-helper` 请把 `docs/design.md` 发布成审阅页，文档 ID 用 `design`，给我本机阅读链接。
 
 Agent 会在当前工作目录将文档入库，启动本机审阅服务并返回类似 `http://127.0.0.1:8765/?doc=design&version=1` 的链接。
 
@@ -89,7 +89,7 @@ Agent 会在当前工作目录将文档入库，启动本机审阅服务并返�
 
 回到同一项目的对话中发送：
 
-> `$doc-helper` 请根据 `design` 第 1 版已保存的批注修改文档，发布第 2 版，并说明改了哪些块。
+> `$doc-review-helper` 请根据 `design` 第 1 版已保存的批注修改文档，发布第 2 版，并说明改了哪些块。
 
 Agent 会读取第 1 版的所有批注与原文块，逐条修订并发布为第 2 版：
 - 新版本默认从空白批注开始，方便展开下一轮审阅。
@@ -100,7 +100,7 @@ Agent 会读取第 1 版的所有批注与原文块，逐条修订并发布为�
 
 ## 命令行速查与本地试用
 
-日常使用中由 Agent 自动调用命令行；如果你希望在终端里手工试用或调试，可以直接运行 `scripts/dochelper.py`（命令需在**目标文档所在的工作目录**下执行）：
+日常使用中由 Agent 自动调用命令行；如果你希望在终端里手工试用或调试，可以直接运行 `scripts/doc_review_helper.py`（命令需在**目标文档所在的工作目录**下执行）：
 
 | 命令 | 说明 |
 | :--- | :--- |
@@ -117,13 +117,13 @@ Agent 会读取第 1 版的所有批注与原文块，逐条修订并发布为�
 
 ```sh
 # 1. 复制内置示例到独立临时目录
-mkdir -p /tmp/dochelper-demo
-cp examples/search-review.md examples/search-latency.png /tmp/dochelper-demo/
-cd /tmp/dochelper-demo
+mkdir -p /tmp/doc-review-helper-demo
+cp examples/search-review.md examples/search-latency.png /tmp/doc-review-helper-demo/
+cd /tmp/doc-review-helper-demo
 
-# 2. 发布第 1 版并启动本机审阅页（替换为实际的 dochelper.py 绝对路径）
-python3 /path/to/Skill-DocHelper/scripts/dochelper.py publish search-review search-review.md --base 0
-python3 /path/to/Skill-DocHelper/scripts/dochelper.py serve --doc search-review --version 1
+# 2. 发布第 1 版并启动本机审阅页（替换为实际的 doc_review_helper.py 绝对路径）
+python3 /path/to/Skill-DocReviewHelper/scripts/doc_review_helper.py publish search-review search-review.md --base 0
+python3 /path/to/Skill-DocReviewHelper/scripts/doc_review_helper.py serve --doc search-review --version 1
 ```
 
 在浏览器中打开终端输出的 `http://127.0.0.1:8765/?doc=search-review&version=1` 即可体验完整审阅界面。
@@ -142,12 +142,12 @@ python3 /path/to/Skill-DocHelper/scripts/dochelper.py serve --doc search-review 
 ## 项目结构与维护者指南
 
 ```text
-Skill-DocHelper/
+Skill-DocReviewHelper/
 ├── SKILL.md                 # Agent 技能入口与操作规范
 ├── INSTALL.md               # 给 Agent 的自动安装与验收指南
 ├── agents/openai.yaml       # Codex 技能元数据与显式调用策略
 ├── scripts/
-│   ├── dochelper.py         # CLI 命令行入口
+│   ├── doc_review_helper.py         # CLI 命令行入口
 │   ├── review_server.py     # 本机 HTTP 审阅服务与安全头/API 实现
 │   └── review_store.py      # Markdown 分块解析、SQLite 版本库与图片去重存储
 ├── assets/                  # 随包分发的 HTML / CSS / JS 与内置三套主题
@@ -156,17 +156,17 @@ Skill-DocHelper/
 ├── docs/images/             # README 界面预览截图
 ├── tests/test_store.py      # 单元测试
 ├── tools/package_skill.py   # 分发包打包脚本
-└── dist/doc-helper.zip      # 可直接交付给 Agent 的成品安装包
+└── dist/doc-review-helper.zip      # 可直接交付给 Agent 的成品安装包
 ```
 
 ### 运行测试与重新打包
 
-修改源码后，可在 `Skill-DocHelper` 目录运行单元测试并重新生成分发包 `dist/doc-helper.zip`（Windows 可将 `python3` 替换为 `py -3`）：
+修改源码后，可在 `Skill-DocReviewHelper` 目录运行单元测试并重新生成分发包 `dist/doc-review-helper.zip`（Windows 可将 `python3` 替换为 `py -3`）：
 
 ```sh
 # 运行单元测试
 python3 -m unittest discover -s tests
 
-# 重新生成 dist/doc-helper.zip
+# 重新生成 dist/doc-review-helper.zip
 python3 tools/package_skill.py
 ```

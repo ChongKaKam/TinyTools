@@ -1,6 +1,6 @@
 interface:
-  display_name: "DocHelper 文档审阅"
+  display_name: "DocReviewHelper 文档审阅"
   short_description: "在工作区生成可逐块批注的 HTML 阅读页，按版本返查意见并修订文档"
-  default_prompt: "使用 $doc-helper 把这份文档发布为 HTML 审阅版，并给我本机阅读链接。"
+  default_prompt: "使用 $doc-review-helper 把这份文档发布为 HTML 审阅版，并给我本机阅读链接。"
 policy:
   allow_implicit_invocation: false

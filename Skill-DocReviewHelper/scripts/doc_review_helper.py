@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""DocHelper command-line interface. Run from the document's agent workspace."""
+"""DocReviewHelper command-line interface. Run from the document's agent workspace."""
 
 import argparse
 import errno
@@ -110,4 +110,4 @@ if __name__ == "__main__":
         message = str(error)
         if isinstance(error, OSError) and error.errno == errno.EADDRINUSE:
             message += "；可用 serve --port 0 选择空闲端口。"
-        sys.exit(f"DocHelper: {message}")
+        sys.exit(f"DocReviewHelper: {message}")

@@ -143,9 +143,10 @@ a { color: var(--accent); text-underline-offset: 3px; }
 }
 @media (max-width: 680px) {
   .top-inner { min-height: 54px; }
-  .brand { font-size: 21px; gap: 8px; }
+  .brand { font-size: 18px; gap: 8px; white-space: nowrap; flex: none; }
   .switches { gap: 8px; }
-  .picker { font-size: 0; gap: 0; }
+  .picker { font-size: 0; gap: 0; min-width: 0; }
+  .theme-picker { flex: none; }
   .picker select { max-width: 26vw; font-size: 12px; }
   .cover { padding-block: 25px 20px; }
   .cover h1 { margin-bottom: 14px; }

@@ -106,7 +106,7 @@
   }
 
   function setupCover() {
-    document.title = view.title + " · v" + view.version + " · DocHelper";
+    document.title = view.title + " · v" + view.version + " · DocReviewHelper";
     byId("doc-title").textContent = view.title;
     const time = byId("published");
     time.dateTime = view.created;
@@ -337,8 +337,8 @@
     const rows = document.createDocumentFragment();
     const headings = [];
     for (const block of view.blocks) {
-      const node = window.DocHelperRender.renderBlock(block);
-      const heading = block.kind === "heading" ? window.DocHelperRender.headingText(block.source) : null;
+      const node = window.DocReviewHelperRender.renderBlock(block);
+      const heading = block.kind === "heading" ? window.DocReviewHelperRender.headingText(block.source) : null;
       const isTitle = block === view.blocks[0] && node.tagName === "H1" && heading === view.title;
       const row = isTitle ? document.querySelector(".cover-row") : element("div");
       row.classList.add("columns", "review-row");

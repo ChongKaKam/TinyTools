@@ -422,5 +422,5 @@
     }
   }
 
-  window.DocHelperRender = Object.freeze({ renderBlock, headingText: source => heading(source).textContent });
+  window.DocReviewHelperRender = Object.freeze({ renderBlock, headingText: source => heading(source).textContent });
 })();

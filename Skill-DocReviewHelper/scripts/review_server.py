@@ -44,7 +44,7 @@ def theme_label(path):
 
 
 class ReviewHandler(BaseHTTPRequestHandler):
-    server_version = "DocHelper"
+    server_version = "DocReviewHelper"
 
     def log_message(self, fmt, *args):
         # Do not write document identifiers, search strings or annotation data to logs.

@@ -1,13 +1,13 @@
 ---
-name: doc-helper
-description: 将 AI 文档发布为可逐块批注的本机 HTML 审阅页，按版本读取批注、针对性修订并回溯原稿。用户明确指名 DocHelper 或 doc-helper 进行文档审阅时使用。
+name: doc-review-helper
+description: 将 AI 文档发布为可逐块批注的本机 HTML 审阅页，按版本读取批注、针对性修订并回溯原稿。用户明确指名 DocReviewHelper 或 doc-review-helper 进行文档审阅时使用。
 ---
 
-# DocHelper 文档审阅
+# DocReviewHelper 文档审阅
 
 在用户的项目工作目录运行命令。脚本以**进程当前目录**为数据边界，在其中的 `.dochelper/reviews.sqlite3` 保存正文、配图和批注。运行要求为 Python 3.9+（含 sqlite3）和现代浏览器。Python 与浏览器端均使用随包资源。
 
-从当前加载的 `SKILL.md` 所在目录定位 `scripts/dochelper.py`，从待审文档所属的工作目录执行。下文用 `python3 "$DH"` 表示当前环境的 Python 解释器和该脚本的绝对路径。可直接按参数调用，含中文内容的输出使用 UTF-8。
+从当前加载的 `SKILL.md` 所在目录定位 `scripts/doc_review_helper.py`，从待审文档所属的工作目录执行。下文用 `python3 "$DH"` 表示当前环境的 Python 解释器和该脚本的绝对路径。可直接按参数调用，含中文内容的输出使用 UTF-8。
 
 ## 发布并交付审阅链接
 

@@ -1,4 +1,4 @@
-"""Workspace-scoped Markdown snapshots and block annotations for DocHelper."""
+"""Workspace-scoped Markdown snapshots and block annotations for DocReviewHelper."""
 
 from __future__ import annotations
 

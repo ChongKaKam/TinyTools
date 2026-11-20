@@ -1,4 +1,4 @@
-"""Build the distributable DocHelper ZIP with Python 3.9+."""
+"""Build the distributable DocReviewHelper ZIP with Python 3.9+."""
 
 import argparse
 import os
@@ -8,12 +8,12 @@ from zipfile import ZIP_DEFLATED, ZipFile, ZipInfo
 
 
 ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_OUTPUT = ROOT / "dist" / "doc-helper.zip"
+DEFAULT_OUTPUT = ROOT / "dist" / "doc-review-helper.zip"
 FILES = (
     "INSTALL.md",
     "SKILL.md",
     "agents/openai.yaml",
-    "scripts/dochelper.py",
+    "scripts/doc_review_helper.py",
     "scripts/review_server.py",
     "scripts/review_store.py",
     "assets/index.html",
@@ -44,7 +44,7 @@ def build(output):
                     source = ROOT / relative
                     if source.resolve(strict=True) != source or not source.is_file():
                         raise ValueError(f"分发文件须为源码目录内的常规文件：{relative}")
-                    name = relative if relative == "INSTALL.md" else "doc-helper/" + relative
+                    name = relative if relative == "INSTALL.md" else "doc-review-helper/" + relative
                     entry = ZipInfo(name, date_time=(1980, 1, 1, 0, 0, 0))
                     entry.create_system = 3
                     entry.external_attr = 0o100644 << 16
@@ -57,7 +57,7 @@ def build(output):
 
 
 def main():
-    parser = argparse.ArgumentParser(description="生成 DocHelper 安装包")
+    parser = argparse.ArgumentParser(description="生成 DocReviewHelper 安装包")
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT, help="输出 ZIP 路径")
     args = parser.parse_args()
     try:
