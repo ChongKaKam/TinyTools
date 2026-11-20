@@ -1,0 +1,24 @@
+/* 潮汐 */
+:root {
+  color-scheme: light;
+  --paper: #f3faf9;
+  --surface: #e3f1ef;
+  --input: #fcfffe;
+  --ink: #1e3538;
+  --muted: #4d686b;
+  --rule: #bed6d4;
+  --accent: #116668;
+  --accent-tint: #d9eeea;
+  --on-accent: #ffffff;
+  --title-face: "DM Sans", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --body-face: "Inter", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --radius: 9px;
+  --code-bg: #e3f0ef;
+  --code-ink: #203839;
+  --code-line: #4f696a;
+  --code-key: #155a78;
+  --code-str: #276444;
+  --code-num: #794530;
+  --code-cmt: #526965;
+  --code-fn: #634782;
+}

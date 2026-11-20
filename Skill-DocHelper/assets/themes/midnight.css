@@ -1,0 +1,24 @@
+/* 夜读 */
+:root {
+  color-scheme: dark;
+  --paper: #1c2028;
+  --surface: #272d37;
+  --input: #20262e;
+  --ink: #e5e9ec;
+  --muted: #adb9c4;
+  --rule: #47525f;
+  --accent: #a8c6eb;
+  --accent-tint: #303f51;
+  --on-accent: #19212c;
+  --title-face: "Spectral", "Songti SC", "Noto Serif CJK SC", Georgia, serif;
+  --body-face: "Inter", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --radius: 5px;
+  --code-bg: #252c36;
+  --code-ink: #e5e9ec;
+  --code-line: #a2afbb;
+  --code-key: #c9adf2;
+  --code-str: #a0cfad;
+  --code-num: #e6bb91;
+  --code-cmt: #a0adba;
+  --code-fn: #9fc9f0;
+}

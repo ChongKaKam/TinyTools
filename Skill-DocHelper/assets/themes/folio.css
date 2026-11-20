@@ -1,0 +1,24 @@
+/* 纸本 */
+:root {
+  color-scheme: light;
+  --paper: #fbf9f3;
+  --surface: #f2efe5;
+  --input: #fffdf7;
+  --ink: #282925;
+  --muted: #626059;
+  --rule: #d6d1c6;
+  --accent: #98432d;
+  --accent-tint: #f4e5d9;
+  --on-accent: #fffaf4;
+  --title-face: "Spectral", "Songti SC", "Noto Serif CJK SC", Georgia, serif;
+  --body-face: "Spectral", "Songti SC", "Noto Serif CJK SC", Georgia, serif;
+  --radius: 3px;
+  --code-bg: #f1eee4;
+  --code-ink: #282925;
+  --code-line: #66655c;
+  --code-key: #83422f;
+  --code-str: #376345;
+  --code-num: #765328;
+  --code-cmt: #68685e;
+  --code-fn: #34577a;
+}

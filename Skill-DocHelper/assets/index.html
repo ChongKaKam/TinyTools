@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>文档审阅 · DocHelper</title>
+  <link rel="stylesheet" href="/app.css">
+  <link id="theme-sheet" rel="stylesheet" href="/themes/folio.css">
+  <script defer src="/render.js"></script>
+  <script defer src="/app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#reading">跳至正文</a>
+  <header class="topbar">
+    <div class="shell top-inner">
+      <div class="brand" lang="en"><span class="brand-mark" aria-hidden="true"></span>DocHelper</div>
+      <div class="switches">
+        <label class="picker" id="doc-picker" hidden>文档
+          <select id="doc-select" aria-label="切换文档"></select>
+        </label>
+        <label class="picker theme-picker" id="theme-picker" hidden>主题
+          <select id="theme-select" aria-label="切换主题"></select>
+        </label>
+      </div>
+    </div>
+  </header>
+  <main class="shell">
+    <p id="message" role="status">正在读取文档…</p>
+    <section class="cover" id="cover" aria-labelledby="doc-title" hidden>
+      <div class="cover-row">
+        <div>
+          <h1 id="doc-title"></h1>
+          <div class="metadata">
+            <label class="version-picker">审阅版本
+              <select id="version-select" aria-label="切换审阅版本"></select>
+            </label>
+            <span class="published"><span class="meta-name">发布于</span> <time id="published"></time></span>
+            <span id="totals"></span>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div id="desk" class="desk" hidden>
+      <aside class="outline">
+        <div class="outline-inner">
+          <h2 class="column-title desktop-outline">大纲</h2>
+          <button class="mobile-outline" type="button" aria-controls="outline-nav" aria-expanded="false">文档大纲 <span aria-hidden="true">⌄</span></button>
+          <nav id="outline-nav" aria-label="文档大纲"></nav>
+        </div>
+      </aside>
+      <section id="reading" tabindex="-1" class="reading" aria-labelledby="reading-title">
+        <div class="reading-head columns">
+          <h2 class="column-title" id="reading-title">正文</h2>
+          <div class="notes-heading">
+            <h2 class="column-title">批注</h2>
+            <label class="only-noted"><input id="only-noted" type="checkbox">仅看已标注</label>
+          </div>
+        </div>
+        <div id="blocks"></div>
+        <p id="empty-filter" hidden>当前版本还没有已保存的批注。<button id="show-all" type="button" class="link-button">显示全部正文</button></p>
+      </section>
+    </div>
+  </main>
+  <noscript>请启用 JavaScript 以阅读文档并保存批注。</noscript>
+</body>
+</html>
